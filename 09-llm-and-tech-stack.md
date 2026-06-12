@@ -41,6 +41,28 @@ With prompt caching: $9–15/month per active venue.
 
 At $79–149/month subscription, comfortably covered.
 
+### Development-phase LLM strategy (pre-launch)
+
+No need for a free model — dev usage is cheap. A developer running 200
+test turns/day on Sonnet 4.6 spends ~$4.50/day; on Haiku ~$1.50/day.
+Expect $20–100/month total during the build.
+
+| Stage | Use |
+|---|---|
+| Unit tests / CI | **Mock `LLMProvider`** returning canned tool calls. $0, deterministic, covers executor + safety stack + audit. |
+| Mechanical dev iteration | **Claude Haiku 4.5** — $1 in / $5 out per 1M tokens. Competent tool-caller, cheap to hammer. |
+| Prompt + behavior tuning | **Claude Sonnet 4.6** (production model). Tuning doesn't transfer between models. |
+| First paying customer onward | Production model only. |
+
+Notes:
+
+- The Anthropic API has no free tier — pay-as-you-go from the first call.
+- Free-tier APIs (Gemini Flash, Groq/Llama) can verify the loop
+  mechanically via the provider abstraction, but nothing tuned on them
+  counts toward the 95% exit metric. Rate limits also bite quickly.
+- Startup credit programs (Anthropic startups, AWS Activate, Google for
+  Startups) are the realistic way to make early development "free."
+
 ### Alternative: GPT-4o (OpenAI)
 
 Comparable quality + tool use. Marginally cheaper. Larger ecosystem.

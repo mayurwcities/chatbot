@@ -34,6 +34,7 @@ platforms they already use.
 | [`11-team-budget-risks.md`](11-team-budget-risks.md) | Headcount, run rate, risks |
 | [`12-decisions-now-vs-later.md`](12-decisions-now-vs-later.md) | What to lock, what to defer |
 | [`EMAIL_TO_MANAGER.md`](EMAIL_TO_MANAGER.md) | What's possible, what's not |
+| [`MANAGER_BRIEF.md`](MANAGER_BRIEF.md) | Plain-English explainer: possible vs not, where each bad approach breaks |
 
 ## Quickstart
 

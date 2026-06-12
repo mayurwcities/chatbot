@@ -18,6 +18,11 @@ Enforced by the executor, not the LLM.
 | Max LLM tokens per chat turn | 8,000 in / 2,000 out |
 | Max consecutive tool iterations per turn | 8 |
 
+Limits are **per-venue config with these safe defaults** (stored in
+`venue_modules.config`), not hardcoded — a 200-seat venue legitimately
+needs different bulk thresholds than a food truck. Changing a limit is
+itself an audited, owner-only action.
+
 Tool returns:
 
 ```json

@@ -106,7 +106,9 @@ it?"
 
 ## ID mapping
 
-Each adapter translates between **canonical IDs** and **external IDs**:
+Each adapter translates between **canonical IDs** and **external IDs**.
+(Schema also listed in `04-data-model.md` — that file is the canonical
+home for all DDL.)
 
 ```sql
 CREATE TABLE integration_id_map (

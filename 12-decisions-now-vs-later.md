@@ -16,6 +16,7 @@ These ripple through the architecture.
 | **Hosted page vs widget for V1** | Both; hosted page default | DEFAULT |
 | **Tech stack** | Next.js + Node + TypeScript + MySQL + Redis + Vercel + AWS RDS | DEFAULT |
 | **Multi-tenant strategy** | Single DB, row-level `venue_id` filtering | DEFAULT |
+| **Source of truth** | Our DB is canonical; POS authoritative on conflict for POS-connected venues. No direct customer-DB access, no stateless pass-through | LOCKED |
 | **Auth** | NextAuth.js with email + magic link | DEFAULT |
 | **Pricing model** | Tiered SaaS (free / $79 / $149 / $249), not transactional | DEFAULT |
 | **Customer success approach** | Founder-led hand-holding for first 10 | LOCKED |
@@ -79,7 +80,8 @@ Notes:
 
 | Date | Decision | Rationale |
 |---|---|---|
-| | | |
+| 2026-06-12 | We are the database of record. No direct access to customers' databases; no stateless API pass-through. | Most venues have no DB to expose (closed platforms / API-only POS); the rest don't scale per-customer. Pass-through breaks undo, audit, LLM context, conflict resolution, CRM, and excludes the ~30% of venues with no API. APIs = adapter layer, not a DB replacement. |
+| 2026-06-12 | Dev-phase LLM strategy: mock provider for CI, Haiku 4.5 for mechanical iteration, Sonnet 4.6 for tuning + production. No free-tier model on the critical path. | Dev cost is $20–100/mo — not worth compromising tool-use reliability. Prompt tuning doesn't transfer between models; the 95% exit metric must be measured on the shipping model. |
 
 ## Log of overturned decisions
 

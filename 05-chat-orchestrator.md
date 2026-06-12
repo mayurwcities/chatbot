@@ -308,6 +308,26 @@ async function handleMessage(venueId, userId, conversationId, message) {
 }
 ```
 
+## Testing the orchestrator
+
+Most of the orchestrator is deterministic plumbing — test it without an
+LLM in the loop.
+
+- **Unit tests / CI: mock the `LLMProvider`.** A fake provider returns
+  canned tool calls ("message contains '86' + item name → return
+  `setItemAvailability`"). Deterministic, instant, $0. This is where the
+  tool executor, safety layers, audit log, and confirmation flow get
+  their coverage.
+- **Live dev iteration: Claude Haiku 4.5** ($1/$5 per 1M tokens) for
+  mechanical end-to-end runs of the agent loop.
+- **Prompt / behavior tuning: the production model only** (Claude
+  Sonnet 4.6). Tool descriptions and prompts tuned on a different model
+  don't transfer; the Phase 0 "95% correct execution" metric only
+  counts when measured on the model that ships.
+- **Regression suite:** keep a corpus of real owner messages (collected
+  from hand-onboarded customers) with expected tool calls. Re-run it on
+  every prompt or tool-description change, and before any model upgrade.
+
 ## What NOT to do
 
 | Don't | Because |

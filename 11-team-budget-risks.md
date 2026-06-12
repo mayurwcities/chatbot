@@ -131,7 +131,7 @@ Ordered by combined (likelihood × impact).
 | Owner can't figure out the chat | HIGH (without onboarding) | High | Hand-onboard first 10. Every "I don't know how to do X" becomes a tool, prompt, or help doc |
 | Building 6 modules but each mediocre | MEDIUM | High | Cut scope. One excellent module > six okay ones |
 | Engineer burnout / single point of failure | MEDIUM | High | No on-call rotation Year 1 (small team) → founder takes pages. Document everything |
-| Manager pushes for "edit any website" version | HIGH | High | Reference `02-what-works-vs-what-doesnt.md`. Push back politely |
+| Manager pushes for "edit any website" / "direct DB access" / "store nothing, just use APIs" version | HIGH | High | Reference `02-what-works-vs-what-doesnt.md` and `MANAGER_BRIEF.md` (has the where-it-breaks examples). Push back politely |
 | LLM provider outage | LOW | High | Fallback provider configured. Cached system prompt + tool defs |
 | GDPR / privacy lawsuit | LOW | High | Don't collect more PII than needed. Consent at every collection point |
 | Data breach | LOW (Year 1) | Catastrophic | Encrypt at rest. OAuth not passwords. SOC 2 within 12 months. Cyber insurance from Month 1 |

@@ -33,6 +33,8 @@ No integrations.
 | Canonical DB schema |
 | Chat orchestrator (agent loop, Claude Sonnet 4.6, tool registry, context loader, response streaming) |
 | Safety stack (layers 1, 2, 3, 4, 6, 9 minimum) |
+| Mock `LLMProvider` for unit tests / CI (no live LLM in the test loop) |
+| Regression corpus: real owner messages → expected tool calls, re-run on every prompt change |
 | `menu` module tools |
 | `hours` module tools |
 | Auto-generated hosted page `yourplatform.com/v/{slug}` |

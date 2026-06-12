@@ -170,8 +170,15 @@ modules enabled:
   - events         (wine tastings)
   - marketing      (universal)
 
-LLM sees: union of all the above (~25 tools, still within reliable range)
+LLM sees: union of all the above (~25 tools)
 ```
+
+**Tool budget:** target ≤20 tools per venue (see `05-chat-orchestrator.md`
+→ Where teams fail). A multi-module venue like the one above goes over —
+when that happens, trim before shipping: drop read-only tools the venue
+never uses, merge near-duplicates (`blockDates`/`unblockDates` → one tool
+with a flag), or gate rarely-used tools behind an intent pre-check so
+they're only included when the message warrants them.
 
 ## Per-vertical prompt augmentation
 

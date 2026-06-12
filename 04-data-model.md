@@ -28,7 +28,8 @@ operators, retail) with the same backbone, extended via modules.
        │                     │                              │
   ┌────▼────────┐    ┌───────▼────────┐           ┌─────────▼─────────┐
   │ venue_users │    │ venue_modules  │           │ venue_integrations│
-  └─────────────┘    └────────────────┘           └───────────────────┘
+  └─────────────┘    └────────────────┘           │ integration_id_map│
+                                                  └───────────────────┘
                              │
        ┌─────────────────────┼──────────────────────────────┐
        │                     │                              │
@@ -154,6 +155,31 @@ CREATE TABLE venue_integrations (
   FOREIGN KEY (venue_id) REFERENCES venues(id) ON DELETE CASCADE
 );
 ```
+
+### `integration_id_map`
+
+Translates between our canonical IDs and each provider's external IDs.
+One row per (integration, entity). Without this table no adapter can
+push a targeted update ("86 item 47" needs DoorDash's ID for item 47).
+
+```sql
+CREATE TABLE integration_id_map (
+  id              BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  venue_id        BIGINT UNSIGNED NOT NULL,
+  integration_id  BIGINT UNSIGNED NOT NULL,
+  entity_type     VARCHAR(64) NOT NULL,
+  canonical_id    BIGINT UNSIGNED NOT NULL,
+  external_id     VARCHAR(255) NOT NULL,
+  mapped_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY uniq_canonical (integration_id, entity_type, canonical_id),
+  UNIQUE KEY uniq_external  (integration_id, entity_type, external_id),
+  INDEX idx_venue (venue_id),
+  FOREIGN KEY (venue_id) REFERENCES venues(id) ON DELETE CASCADE,
+  FOREIGN KEY (integration_id) REFERENCES venue_integrations(id) ON DELETE CASCADE
+);
+```
+
+Usage details in `07-integrations.md` → ID mapping.
 
 ## Catalog (universal)
 

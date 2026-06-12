@@ -25,6 +25,8 @@ The most important doc in the folder. Read before any other.
 | Trap | Why |
 |---|---|
 | **Connect to any external website and edit it** | Unsolved. 12+ months burned for nothing shippable. Trust story is also a non-starter. |
+| **Direct writes to a customer's own database** | ~95% of venues have no DB to reach (closed platforms, API-only POS). The rest are all different — per-customer reverse-engineering that breaks on their next plugin update. Writes behind the app's back skip its caches/validation and corrupt the site. |
+| **Stateless API pass-through (store nothing on our side)** | LLM needs the catalog in context every turn (latency + provider rate limits force a cache = data anyway). Undo needs prior state. Audit IS stored data. Three platforms disagreeing need a reconciled master. ~30% of venues have no API. CRM has nowhere else to live. |
 | **Training a custom LLM** | $10M+ compute, 10–20 researchers, 12+ months. Beaten by frontier the moment you ship. |
 | **Multiple third-party integrations in parallel** | Each is 2–4 months solo, longer in parallel. Ship one, sell it, then the next. |
 | **All verticals at launch** | Nothing works well anywhere. Data model alone is months if you try to handle all of them. |

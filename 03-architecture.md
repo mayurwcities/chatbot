@@ -50,7 +50,8 @@ Table groups:
 - **Customers + orders**: `customers`, `orders`, `order_items`, `payments`
 - **Marketing**: `campaigns`, `campaign_recipients`, `campaign_tracking`,
   `email_templates`
-- **Integrations**: `venue_integrations`, `integration_sync_log`
+- **Integrations**: `venue_integrations`, `integration_id_map`,
+  `integration_sync_log`
 - **Safety**: `audit_log`, `tool_calls`, `chat_messages`, `confirmations`
 
 ### 2. Chat orchestrator
@@ -152,6 +153,14 @@ adapters/
 
 When a tool call modifies canonical state, the orchestrator looks up the
 venue's active integrations and fans out via adapters in parallel.
+
+**Source-of-truth policy.** Our database is canonical for every venue.
+The one nuance: for POS-connected venues (Square, Toast), the POS is
+treated as *authoritative on conflict* — if the owner edits at the
+terminal during service, the bidirectional sync pulls that change into
+our DB and re-publishes it outward. Our copy still exists either way;
+it's what makes LLM context, undo, audit, and CRM possible. See
+`07-integrations.md` → Sync strategies.
 
 ### 5. Safety stack
 

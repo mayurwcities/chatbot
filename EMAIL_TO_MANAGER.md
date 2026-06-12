@@ -62,38 +62,49 @@ starts.
    adapter integrations. The owner's experience is the same; the
    implementation is buildable.
 
-2. **A custom-trained LLM.** $10M–$100M+ in compute, 10–20 ML
+2. **Direct access to customers' own databases — or "use their APIs and
+   store nothing on our side."** Most venues have no database we could
+   reach (Wix, Squarespace, Toast, DoorDash expose APIs, never DBs), and
+   the few that do are all different — per-customer reverse-engineering
+   that breaks on their next update. The API-only "stateless" version
+   also fails: undo, audit, the AI's context, conflict resolution
+   between platforms, and the marketing CRM all require our own record,
+   and ~30% of small venues have no API at all. Getting API access is
+   exactly our adapter plan; it complements our database, it doesn't
+   replace it.
+
+3. **A custom-trained LLM.** $10M–$100M+ in compute, 10–20 ML
    researchers, 12+ months minimum, and we'd be behind whatever
    Anthropic / OpenAI / Google released that week. Our moat is
    integrations + UX + workflow, not model weights.
 
-3. **All verticals at launch (restaurants + hotels + tours + retail
+4. **All verticals at launch (restaurants + hotels + tours + retail
    simultaneously).** The data model alone is months of design work
    if we try to handle all of them up front. Restaurants first, then
    one vertical at a time.
 
-4. **Five third-party integrations in parallel.** Each integration is
+5. **Five third-party integrations in parallel.** Each integration is
    2–4 months end to end (API discovery, OAuth flow, push/pull methods,
    webhook handling, certification if required, onboarding flow, docs).
    "Ship two this quarter" is realistic. "Ship every major platform by
    month 6" is not.
 
-5. **Self-serve onboarding from Day 1.** Real small-venue owners need
+6. **Self-serve onboarding from Day 1.** Real small-venue owners need
    handholding. They'll quit at the first error. We hand-onboard the
    first 10 customers personally, learn what to automate, then build
    self-serve in Phase 6.
 
-6. **"The AI handles everything" with no friction.** LLMs hallucinate.
+7. **"The AI handles everything" with no friction.** LLMs hallucinate.
    Every destructive / bulk / costly action goes behind a confirmation
    prompt. The safety stack IS the product — without it, the first
    incident (chatbot wipes a menu mid-service, refunds the wrong
    customer, sends a promo to the wrong list) kills our reputation
    immediately.
 
-7. **Voice, WhatsApp, mobile app, all on Day 1.** Web chat first.
+8. **Voice, WhatsApp, mobile app, all on Day 1.** Web chat first.
    Other channels in Year 2.
 
-8. **DoorDash / Uber Eats / Square / Toast simultaneously.** DoorDash
+9. **DoorDash / Uber Eats / Square / Toast simultaneously.** DoorDash
    certification alone takes several months. We sequence: DoorDash,
    then Square, then Uber Eats, then Toast.
 

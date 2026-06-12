@@ -30,6 +30,8 @@ Our pitch: **one chat window. Everything else syncs from there.**
 | Not this | Reason |
 |---|---|
 | An AI that edits arbitrary external websites | Unsolved research problem. Browser-using agents are demos. |
+| An AI with direct access to customers' databases | Most venues have no DB to expose (Wix, Squarespace, Toast are API-only); the rest are all different. Per-customer reverse-engineering doesn't scale. |
+| A stateless pass-through over third-party APIs | Undo, audit, LLM context, conflict resolution, and CRM all require our own database of record. ~30% of venues have no API at all. |
 | A POS replacement | Square, Toast, Clover are entrenched. We are the chat layer above them. |
 | A custom-trained LLM | $10M+ compute, beaten by frontier providers immediately. We rent intelligence. |
 | A single schema for every vertical | Modules + JSON attributes handle this. |
